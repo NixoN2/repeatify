@@ -1,5 +1,6 @@
 import {Switch, Route} from "react-router-dom";
 import {getRoutes} from "./utils/routes";
+import "./App.scss";
 function App() {
   const isAuthorized = false;
   const routes = getRoutes(isAuthorized);
