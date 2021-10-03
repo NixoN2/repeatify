@@ -1,11 +1,12 @@
 import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
+import CollectionPage from "../pages/Collections";
 export const getRoutes = (isAuthorized) => {
     return isAuthorized ?
         [
             {
                 path:"/collections",
-                component: null
+                component: CollectionPage
             }
         ]
         :
@@ -17,10 +18,6 @@ export const getRoutes = (isAuthorized) => {
             {
                 path:"/register",
                 component: RegisterPage
-            },
-            {
-                path:"/restore-password",
-                component: null
             }
         ];
 };
