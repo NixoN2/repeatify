@@ -1,7 +1,6 @@
 import {createContext, useState} from "react";
 import {Switch, Route} from "react-router-dom";
 import {getRoutes} from "./utils/routes";
-import "./App.scss";
 
 export const AuthContext = createContext();
 
