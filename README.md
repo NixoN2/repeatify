@@ -18,6 +18,7 @@
 
 #### Collection поля:
 * Author - Foreign key to User model
+* Filename - Varchar(200)
 * Id - Integer(>=0), Unique
 
 #### Card поля:
