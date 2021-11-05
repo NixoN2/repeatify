@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# Repeatify
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Приложение для отображения материала / pdf-файлов через коллекции карточек
 
-## Available Scripts
+Пользователи могут создавать коллекции карточек. Каждая карточка может привязана к некоторому pdf-файлу через номера страниц. Пользователь может как привязать карточку к pdf-файлу, так и самостоятельно наполнить её необходимым материалом. 
 
-In the project directory, you can run:
+## Техническое задание
 
-### `npm start`
+### Модели данных
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### User поля:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* Id - Integer(>= 0), Unique
+* Email - Varchar(200), Unique
+* First name - Varchar(200)
+* Last name - Varchar(200)
+* Password - Varchar(200) - password is stored encrypted
+* Role - Varchar(200)
 
-### `npm test`
+#### Collection поля:
+* Author - Foreign key to User model
+* Id - Integer(>=0), Unique
+* Private - Boolean
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Card поля:
+* Id - Integer(>= 0), Unique
+* Collection - Foreign key to Collection model
+* Name - Varchar(200)
+* Material - Text
 
-### `npm run build`
+#### PdfPage поля:
+* Id - Integer(>=0), Unique
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### CollectionUser поля:
+* Id - Integer(>=0), Unique
+* Collection - Foreign key to Collection model
+* User - Foreign key to User model
+* Permission - Foreign key to Permission model
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Permission поля:
+* Permission - Varchar(200)
+* Id - Integer(>=0), Unique
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### CardPdf поля:
+* Id - Integer(>=0), Unique
+* Card - Foreign key to Card model
+* PdfPage - Foreign key to PdfPage model
 
-### `npm run eject`
+#### Стартовая страница
+Если пользователь не авторизован, то форма логина/регистрации. Иначе, страница с отображением коллекций пользователей отсортированных по дате их создания, поиском по имени коллекции, кнопкой для перехода на страницу создания новой коллекции и кнопкой для перехода на профиль.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Страница коллекции
+Показывается список карточек, можно добавить карточку или изменить одну из имеющихся, можно посмотреть карточку, можно добавить редактора. Если подгрузить некоторый pdf файл, то можно посмотреть страницы этого pdf файла, которые связаны с карточкой. Можно скопировать ссылку коллекции, чтобы поделиться коллекцией. Кнопка для перехода в профиль автора коллекции.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Страница создания коллекции
+Можно загрузить txt файл определённого формата, либо при помощи интерфейса сформировать себе карточки, из которых коллекция будет состоять. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Профиль пользователя 
+Показан список коллекций пользователя, а также данные этого пользователя. Имя и фамилия могут быть изменены. Возможно выхода из профиля.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Регистрация и авторизация 
 
-## Learn More
+Необходимые пользователю поля:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Email
+* Password
+* Name
+* Last Name
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Уровни доступа пользователя:
 
-### Code Splitting
+* Гость (неавторизованный пользователь)
+* Авторизованный пользователь
+* Администратор
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Возможности гостя
 
-### Analyzing the Bundle Size
+* Создать аккаунт.
+* Перейти на коллекцию по ссылке.
+* Перейти на страницу автора коллекции.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Возможности авторизованного пользователя
 
-### Making a Progressive Web App
+* Авторизоваться.
+* Выйти из аккаунта.
+* Создавать / редактировать / удалять собственные коллекции
+* Перейти на коллекцию по ссылке.
+* Перейти на страницу автора коллекции.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Возможности администратора
+Администратор может всё, что авторизованный пользователь +
+* Удалить пользователя,
+* Удалить коллекцию
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
