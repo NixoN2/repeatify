@@ -1,4 +1,20 @@
-const user = (sequelize, DataTypes) => {
+const collection = (sequelize, DataTypes) => {
+    const Collection = sequelize.define(
+        'collection',
+        {
+            id: {
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            private: {
+                type: DataTypes.BOOLEAN
+            }
+        },
+        {
+            freezeTableName: true
+        }
+    );
     const User = sequelize.define(
         'user',
         {
@@ -32,8 +48,10 @@ const user = (sequelize, DataTypes) => {
             freezeTableName: true
         }
     )
-    User.sync();
-    return User;
+    Collection.belongsTo(User);
+    User.hasMany(Collection);
+    Collection.sync();
+    return Collection;
 }
 
-export default user;
+export default collection;
