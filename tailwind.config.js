@@ -4,7 +4,9 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'unauthorized-bg-color': '#A9D4EF'
+                'unauthorized-bg-color': '#A9D4EF',
+                'carolina-blue': '#41A1DC',
+                'prussian-blue': '#0D2F45'
             }
         },
     },

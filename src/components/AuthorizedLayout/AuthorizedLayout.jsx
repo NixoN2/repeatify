@@ -1,8 +1,12 @@
-
 import Header from "../Header";
 const AuthorizedLayout = ({children}) => {
     return (
-        null
+        <div className="h-screen bg-unauthorized-bg-color overflow-x-hidden ">
+            <Header />
+            <div className="flex justify-center items-center">
+                {children}
+            </div>
+        </div>
     )
 }
 export default AuthorizedLayout;

@@ -5,7 +5,7 @@ export const getRoutes = (isAuthorized) => {
     return isAuthorized ?
         [
             {
-                path:"/collections",
+                path:"/",
                 component: CollectionPage
             }
         ]

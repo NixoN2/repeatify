@@ -1,15 +1,19 @@
-import { useContext } from 'react';
-import { AuthContext} from "../../App";
+import { useContext, useState } from 'react';
+import { AuthContext } from "../../App";
 import { Link, useHistory} from "react-router-dom";
-
+import { useLogin } from "./hooks/useLogin";
 const LoginForm = () => {
     const history = useHistory();
     const toggleAuth = useContext(AuthContext);
-    console.log(toggleAuth);
+    const [form, setForm] = useState({email: "", password: ""});
+    const handleInput = (e) => {
+        setForm({...form, [e.target.name]: e.target.value});
+    }
+    const handler = useLogin();
     const toggleLogin = (e) => {
         e.preventDefault();
         toggleAuth();
-        history.push("/collections");
+        handler(form.email);
     }
     return (
         <form className="
@@ -22,18 +26,22 @@ const LoginForm = () => {
             2xl:text-5xl">Login</p>
             <label className="2xl:text-2xl">Email:</label>
             <input
+                onChange={handleInput}
                 className="
                 w-full h-12 pl-4 border-2 rounded-md border-black mb-4
                 2xl:h-14 2xl:text-2xl 2xl:mb-8"
                 type="email"
+                name="email"
                 placeholder="Enter your email here:"
             />
             <label className="2xl:text-2xl">Password:</label>
             <input
+                onChange={handleInput}
                 className="
                 w-full h-12 pl-4 border-2 rounded-md border-black mb-16
                 2xl:h-14 2xl:text-2xl 2xl:mb-8"
                 type="password"
+                name="password"
                 placeholder="Enter your password here:"
             />
             <button
