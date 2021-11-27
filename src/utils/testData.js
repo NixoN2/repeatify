@@ -28,7 +28,33 @@ const collections = [
             "role": "admin",
             "email": "mythtics2001@mail.ru"
         },
-        "cards": [],
+        "cards": [
+            {
+                "id": "1",
+                "name": "math1",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "2",
+                "name": "math2",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "3",
+                "name": "math3",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "4",
+                "name": "math4",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "5",
+                "name": "math5",
+                "material": "this is material for this card"
+            }
+        ],
         "editors": []
     },
     {
@@ -43,7 +69,33 @@ const collections = [
             "role": "admin",
             "email": "mythtics2001@mail.ru"
         },
-        "cards": [],
+        "cards": [
+            {
+                "id": "1",
+                "name": "stats1",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "2",
+                "name": "stats2",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "3",
+                "name": "stats3",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "4",
+                "name": "stats4",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "5",
+                "name": "stats5",
+                "material": "this is material for this card"
+            }
+        ],
         "editors": []
     },
     {
@@ -58,7 +110,33 @@ const collections = [
             "role": "admin",
             "email": "mythtics2001@mail.ru"
         },
-        "cards": [],
+        "cards": [
+            {
+                "id": "1",
+                "name": "geom1",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "2",
+                "name": "geom2",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "3",
+                "name": "geom3",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "4",
+                "name": "geom4",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "5",
+                "name": "geom5",
+                "material": "this is material for this card"
+            }
+        ],
         "editors": []
     },
     {
@@ -73,7 +151,33 @@ const collections = [
             "id": "2",
             "role": "user"
         },
-        "cards": [],
+        "cards": [
+            {
+                "id": "1",
+                "name": "cooking1",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "2",
+                "name": "cooking2",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "3",
+                "name": "cooking3",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "4",
+                "name": "cooking4",
+                "material": "this is material for this card"
+            },
+            {
+                "id": "5",
+                "name": "cooking5",
+                "material": "this is material for this card"
+            }
+        ],
         "editors": []
     }
 ]
@@ -90,6 +194,10 @@ export const getCollections = () => {
     return new Promise((res,rej) => res(collections));
 }
 
-export const getCollection = (id) => {
+export const getCollectionsById = (id) => {
     return new Promise((res,rej) => res(collections.filter(collection => collection.author.id === id)));
+}
+
+export const getCollection = (id) => {
+    return new Promise((res,rej) => res(collections.filter(collection => collection.id === id)[0]));
 }

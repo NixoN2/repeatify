@@ -3,6 +3,9 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
+            spacing: {
+                '192': '48rem'
+            },
             colors: {
                 'unauthorized-bg-color': '#A9D4EF',
                 'carolina-blue': '#41A1DC',
