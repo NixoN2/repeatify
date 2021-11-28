@@ -19,7 +19,7 @@ const collections = [
     {
         "id": "1",
         "name": "math",
-        "privateCollection": "false",
+        "privateCollection": false,
         "description": "math description",
         "author": {
             "id": "1",
@@ -60,7 +60,7 @@ const collections = [
     {
         "id": "2",
         "name": "stats",
-        "privateCollection": "false",
+        "privateCollection": false,
         "description": "stats description",
         "author": {
             "id": "1",
@@ -101,7 +101,7 @@ const collections = [
     {
         "id": "3",
         "name": "geom",
-        "privateCollection": "true",
+        "privateCollection": true,
         "description": "geom description",
         "author": {
             "id": "1",
@@ -142,7 +142,7 @@ const collections = [
     {
         "id": "4",
         "name": "cooking",
-        "privateCollection": "false",
+        "privateCollection": false,
         "description": "cooking description",
         "author": {
             "email": "aegorov@mail.ru",

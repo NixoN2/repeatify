@@ -3,6 +3,7 @@ import RegisterPage from "../pages/Register";
 import Profile from "../pages/Profile";
 import CollectionPage from "../pages/Collections";
 import Collection from "../pages/Collection";
+import CreateCollection from "../pages/CreateCollection";
 export const getRoutes = (isAuthorized) => {
     return isAuthorized ?
         [
@@ -17,6 +18,10 @@ export const getRoutes = (isAuthorized) => {
             {
                 path: "/collection/:id",
                 component: Collection
+            },
+            {
+                path: "/create",
+                component: CreateCollection
             }
         ]
         :
@@ -28,6 +33,18 @@ export const getRoutes = (isAuthorized) => {
             {
                 path:"/register",
                 component: RegisterPage
-            }
+            },
+            {
+                path: "/profile/:id",
+                component: Profile
+            },
+            {
+                path: "/collection/:id",
+                component: Collection
+            },
+            {
+                path:"/",
+                component: CollectionPage
+            },
         ];
 };

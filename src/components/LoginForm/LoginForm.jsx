@@ -1,10 +1,11 @@
-import { useContext, useState } from 'react';
-import { AuthContext } from "../../App";
+import { useState } from 'react';
 import { Link, useHistory} from "react-router-dom";
 import { useLogin } from "./hooks/useLogin";
+import {useDispatch} from "react-redux";
+import {actions} from "../../store";
 const LoginForm = () => {
     const history = useHistory();
-    const toggleAuth = useContext(AuthContext);
+    const dispatch = useDispatch();
     const [form, setForm] = useState({email: "", password: ""});
     const handleInput = (e) => {
         setForm({...form, [e.target.name]: e.target.value});
@@ -12,7 +13,9 @@ const LoginForm = () => {
     const handler = useLogin();
     const toggleLogin = (e) => {
         e.preventDefault();
-        toggleAuth();
+        dispatch(actions.setAuthorized(true));
+        window.localStorage.setItem("email",form.email);
+        window.localStorage.setItem("isAuthorized", "true");
         handler(form.email);
     }
     return (

@@ -1,13 +1,13 @@
 import { Link, useHistory } from "react-router-dom";
-import { useContext } from 'react';
-import { AuthContext} from "../../App";
-
+import {useDispatch} from "react-redux";
+import {actions} from "../../store";
 const RegisterForm = () => {
     const history = useHistory();
-    const toggleAuth = useContext(AuthContext);
+    const dispatch = useDispatch();
     const toggleRegister = (e) => {
         e.preventDefault();
-        toggleAuth();
+        dispatch(actions.setAuthorized(true));
+        window.localStorage.setItem("isAuthorized", "true");
         history.push("/collections");
     }
     return (
