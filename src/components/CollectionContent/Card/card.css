@@ -12,6 +12,7 @@
 .front,
 .back {
     backface-visibility: hidden;
+    max-width: 220px;
 }
 .front {
     z-index: 2;

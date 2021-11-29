@@ -8,9 +8,9 @@ const Card = ({id,material,name}) => {
         <div className={classnames({"hover": !open},"flip-container")} onClick={toggle}>
             <div className="flipper">
                 {open ?
-                    <div className="front text-center text-gray-100 text-2xl p-10 rounded-xl
+                    <div className="front text-gray-100 text-2xl w-72 cursor-pointer h-40 flex flex-col justify-center items-center p-2 rounded-xl
                     bg-carolina-blue hover:bg-prussian-blue">{name}</div>
-                    : <div className="back text-center text-gray-100 text-2xl p-10 rounded-xl
+                    : <div className="back text-gray-100 text-2xl w-72 h-40 cursor-pointer flex flex-col justify-center items-center p-2 rounded-xl
                     bg-carolina-blue hover:bg-prussian-blue">{material}
                 </div>}
             </div>
