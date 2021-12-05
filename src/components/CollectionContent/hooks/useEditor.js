@@ -6,8 +6,8 @@ export const useEditor = () => {
     const [search, setSearch] = useState("");
     const onSearch = (e) => setSearch(e.target.value);
     const [AddEditor] = useAddEditorMutation()
-    const addEditor = () => {
-        return AddEditor(currentCollection.id,{email: search})
+    const addEditor = async () => {
+        return AddEditor({collectionId: currentCollection.id,email: search})
         .unwrap()
         .then(fulfilled => console.log(fulfilled))
         .catch(error => console.log(error));

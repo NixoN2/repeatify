@@ -1,8 +1,8 @@
 import {useCreateCard} from "./hooks/useCreateCard";
-const CreateCardForm = () => {
+const CreateCardForm = ({className}) => {
     const  {name,material,addCard,fieldOnChange} = useCreateCard();
     return (
-        <div>
+        <div className={className}>
             <p className="text-2xl text-carolina-blue mb-6">Create new card:</p>
             <p className="text-xl text-carolina-blue mb-2">Name:</p>
             <input

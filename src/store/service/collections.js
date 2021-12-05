@@ -27,8 +27,8 @@ export const collectionsApi = createApi({
             })
         }),
         AddEditor: builder.mutation({
-            query: (id,body) => ({
-                url: `editors/${id}`,
+            query: (body) => ({
+                url: `/editors/${body.collectionId}`,
                 method: 'POST',
                 body: body
             })

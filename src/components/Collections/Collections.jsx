@@ -14,7 +14,7 @@ const Collections = () => {
             </div>
                 {
                     collections !== undefined && collections?.length > 0 ?
-                        filtered ?
+                        filtered?.length > 0 ?
                             <div className="grid gap-x-16 gap-y-16 grid-cols-3">
                                 {
                                     filtered.map(collection =>
@@ -25,6 +25,7 @@ const Collections = () => {
                                         description={collection.description}
                                         privateCollection={collection.private}
                                         author={`${collection.author.first_name} ${collection.author.last_name}`}
+                                        collection={collection}
                                     />)
                                 }
                             </div>

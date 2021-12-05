@@ -5,8 +5,8 @@ import {useEffect} from "react";
 import {useGetCollectionQuery} from "../../../store/service/collections";
 export const useCollection = (id) => {
     const dispatch = useDispatch();
-    const {data: collection} = useGetCollectionQuery(id);
     const {currentCollection} = useSelector(state=>state.collections);
+    const {data: collection} = useGetCollectionQuery(id);
     useEffect(()=> {
         const getCollectionById = async () => {
             dispatch(actions.setCollection(collection));
