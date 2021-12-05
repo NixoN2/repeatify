@@ -1,6 +1,4 @@
 import { Link, useHistory } from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {actions} from "../../store";
 import {useState} from "react";
 import { useSignUpMutation } from "../../store/service/users";
 import { animals, colors } from "../../utils/animals";
@@ -19,11 +17,8 @@ const RegisterForm = () => {
         setForm({...form, [e.target.name]: e.target.value});
     }
     const [ SignUp ] = useSignUpMutation();
-    const dispatch = useDispatch();
     const toggleRegister = (e) => {
         e.preventDefault();
-        // dispatch(actions.setAuthorized(true));
-        window.localStorage.setItem("isAuthorized", "true");
         history.push("/collections");
         if (form.password === form.repassword){
             return SignUp({

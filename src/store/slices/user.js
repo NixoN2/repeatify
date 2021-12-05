@@ -4,10 +4,10 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         user: {
-            id: 0,
+            id: window.localStorage.getItem("id") || 0,
             firstName: "",
             lastName: "",
-            email: window.localStorage.getItem("email"),
+            email: "",
             role: ""
         },
         currentUser: {
@@ -17,14 +17,10 @@ const userSlice = createSlice({
             email: "",
             role: ""
         },
-        isAuthorized: !!window.localStorage.getItem("isAuthorized")
     },
     reducers: {
         setUser(state,action){
             state.user = action.payload;
-        },
-        setAuthorized(state, action){
-            state.isAuthorized = action.payload;
         },
         setCurrentUser(state,action){
             state.currentUser = action.payload;

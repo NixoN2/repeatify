@@ -8,7 +8,11 @@ export const getRoutes = (isAuthorized) => {
     return isAuthorized ?
         [
             {
-                path:"/",
+                path: "/",
+                component: LoginPage
+            },
+            {
+                path:"/collections",
                 component: CollectionPage
             },
             {
@@ -43,7 +47,7 @@ export const getRoutes = (isAuthorized) => {
                 component: Collection
             },
             {
-                path:"/",
+                path:"/collections",
                 component: CollectionPage
             },
         ];

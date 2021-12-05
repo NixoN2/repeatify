@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import { Link, useHistory} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLogin } from "./hooks/useLogin";
-import {useDispatch} from "react-redux";
-import {actions} from "../../store";
 import { useLoginMutation } from "../../store/service/users";
+
 const LoginForm = () => {
     const [Login] = useLoginMutation()
-    const history = useHistory();
-    const dispatch = useDispatch();
     const [form, setForm] = useState({email: "", password: ""});
     const handleInput = (e) => {
         setForm({...form, [e.target.name]: e.target.value});
@@ -15,12 +12,10 @@ const LoginForm = () => {
     const handler = useLogin();
     const toggleLogin = (e) => {
         e.preventDefault();
-        // dispatch(actions.setAuthorized(true));
-        window.localStorage.setItem("email",form.email);
-        window.localStorage.setItem("isAuthorized", "true");
-        // handler(form.email);
-        return Login({email: form.email, password: form.password}).unwrap()
-        .then(fulfilled=>console.log(fulfilled)).catch(error=>console.log(error));
+        return Login({email: form.email, password: form.password})
+        .unwrap()
+        .then(fulfilled=>handler(fulfilled))
+        .catch(error=>console.log(error));
     }
     return (
         <form className="

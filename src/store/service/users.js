@@ -6,7 +6,7 @@ export const usersApi = createApi({
     reducerPath: 'usersApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/' }),
     endpoints: (builder) => ({
-        GetUserById: builder.query({
+        GetUser: builder.query({
             query: (id) => `users/${id}`,
         }),
         GetUsers: builder.query({
@@ -18,7 +18,6 @@ export const usersApi = createApi({
                 method: 'POST',
                 body: body
             }),
-            transformResponse: (response) => response.data
         }),
         SignUp: builder.mutation({
             query: (body) => ({
@@ -26,13 +25,12 @@ export const usersApi = createApi({
                 method: 'POST',
                 body: body
             }),
-            transformResponse: (response) => response.data
         })
     }),
 })
 
 export const {
-    useGetUserByIdQuery,
+    useGetUserQuery,
     useGetUsersQuery,
     useLoginMutation,
     useSignUpMutation
