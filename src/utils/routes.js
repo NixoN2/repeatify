@@ -5,6 +5,7 @@ import CollectionPage from "../pages/Collections";
 import Collection from "../pages/Collection";
 import CreateCollection from "../pages/CreateCollection";
 export const getRoutes = (isAuthorized) => {
+
     return isAuthorized ?
         [
             {
@@ -35,8 +36,8 @@ export const getRoutes = (isAuthorized) => {
                 component: LoginPage
             },
             {
-                path:"/register",
-                component: RegisterPage
+                path:"/collections",
+                component: CollectionPage
             },
             {
                 path: "/profile/:id",
@@ -47,8 +48,8 @@ export const getRoutes = (isAuthorized) => {
                 component: Collection
             },
             {
-                path:"/collections",
-                component: CollectionPage
-            },
+                path: "/create",
+                component: CreateCollection
+            }
         ];
 };

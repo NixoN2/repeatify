@@ -2,8 +2,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 // Define a service using a base URL and expected endpoints
-export const usersApi = createApi({
-    reducerPath: 'usersApi',
+export const auth = createApi({
+    reducerPath: 'auth',
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://repeatify.herokuapp.com',
         prepareHeaders: (headers, { getState }) => {
@@ -15,16 +15,24 @@ export const usersApi = createApi({
         }
     }),
     endpoints: (builder) => ({
-        GetUser: builder.query({
-            query: (id) => `users/${id}`,
+        Login: builder.mutation({
+            query: (body) => ({
+                url: `login`,
+                method: 'POST',
+                body: body
+            }),
         }),
-        GetUsers: builder.query({
-            query: (id) => `users/${id}`,
+        SignUp: builder.mutation({
+            query: (body) => ({
+                url: 'register',
+                method: 'POST',
+                body: body
+            }),
         })
     }),
 })
 
 export const {
-    useGetUserQuery,
-    useGetUsersQuery,
-} = usersApi;
+    useLoginMutation,
+    useSignUpMutation,
+} = auth;

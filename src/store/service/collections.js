@@ -4,7 +4,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Define a service using a base URL and expected endpoints
 export const collectionsApi = createApi({
     reducerPath: 'collectionsApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/' }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: 'https://repeatify.herokuapp.com',
+        prepareHeaders: (headers, { getState }) => {
+            const token = getState().user.token;
+            if (token) {
+                headers.set("Authorization", `Bearer ${token}`);
+            }
+            return headers;
+        }
+    }),
     endpoints: (builder) => ({
         GetCollections: builder.query({
             query: () => `collections`,

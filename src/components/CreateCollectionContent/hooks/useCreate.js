@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import {useSelector,useDispatch} from "react-redux";
 import {actions} from "../../../store";
-import {useCreateCollectionMutation, useGetCollectionQuery} from "../../../store/service/collections";
+import {useCreateCollectionMutation} from "../../../store/service/collections";
 
 export const useCreate = () => {
     const {user} = useSelector(state=>state.user);

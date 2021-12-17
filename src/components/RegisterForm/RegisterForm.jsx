@@ -1,40 +1,7 @@
-import { Link, useHistory } from "react-router-dom";
-import {useState} from "react";
-import { useSignUpMutation } from "../../store/service/users";
-import { animals, colors } from "../../utils/animals";
+import { Link } from "react-router-dom";
+import { useRegister } from "./hooks/useRegister";
 const RegisterForm = () => {
-    const history = useHistory();
-    const [form, setForm] = useState({email: "",password: "",first_name: "",last_name:"",repassword: ""});
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-    const getRandomItem = (array) => {
-        return array[getRandomInt(0,array.length-1)];
-    }
-    const handleInput = (e) => {
-        setForm({...form, [e.target.name]: e.target.value});
-    }
-    const [ SignUp ] = useSignUpMutation();
-    const toggleRegister = (e) => {
-        e.preventDefault();
-        history.push("/collections");
-        if (form.password === form.repassword){
-            return SignUp({
-                email: form.email,
-                password: form.password,
-                role: "user",
-                first_name: form.first_name,
-                last_name: form.last_name,
-                color: getRandomItem(colors),
-                animal: getRandomItem(animals)
-            })
-                .unwrap()
-            .then(fulfilled => console.log(fulfilled))
-            .catch(error => console.log(error))
-        }
-    }
+    const {handleInput, form, toggleRegister} = useRegister();
     return (
         <form className="
             bg-white rounded-lg w-5/6 p-8 px-4
@@ -53,6 +20,7 @@ const RegisterForm = () => {
                 2xl:h-14 2xl:text-2xl 2xl:mb-8"
                 type="text"
                 name="first_name"
+                value={form.first_name}
                 onChange={handleInput}
                 placeholder="Enter your first name here:"
             />
@@ -63,6 +31,7 @@ const RegisterForm = () => {
                 2xl:h-14 2xl:text-2xl 2xl:mb-8"
                 type="text"
                 name="last_name"
+                value={form.last_name}
                 onChange={handleInput}
                 placeholder="Enter your last name here:"
             />
@@ -72,6 +41,7 @@ const RegisterForm = () => {
                 w-full h-12 pl-4 border-2 rounded-md border-black mb-4
                 2xl:h-14 2xl:text-2xl 2xl:mb-8"
                 type="email"
+                value={form.email}
                 name="email"
                 onChange={handleInput}
                 placeholder="Enter your email here:"
@@ -83,6 +53,7 @@ const RegisterForm = () => {
                 2xl:h-14 2xl:text-2xl 2xl:mb-8"
                 type="password"
                 name="password"
+                value={form.password}
                 onChange={handleInput}
                 placeholder="Enter your password here:"
             />
@@ -92,6 +63,7 @@ const RegisterForm = () => {
                 w-full h-12 pl-4 border-2 rounded-md border-black mb-16
                 2xl:h-14 2xl:text-2xl 2xl:mb-8"
                 type="password"
+                value={form.repassword}
                 name="repassword"
                 onChange={handleInput}
                 placeholder="Enter your password here again:"
