@@ -11,18 +11,23 @@ const LoginPage = () => {
     const dispatch = useDispatch();
     useEffect(()=>{
         (async () => {
-            if (!window.localStorage.getItem("token") && window.localStorage.getItem("redirected")) {
-                try {
-                    const token = await getAccessTokenSilently({audience: "https://repeatify.herokuapp.com"});
-                    dispatch(actions.setToken(token))
-                    if (token?.length > 0){
-                        history.push("/collections");
-                        window.localStorage.setItem("token",token);
+            if (window.localStorage.getItem("redirected")) {
+                if (!window.localStorage.getItem("token")) {
+                    try {
+                        const token = await getAccessTokenSilently({audience: "https://repeatify.herokuapp.com"});
+                        dispatch(actions.setToken(token))
+                        if (token?.length > 0){
+                            history.push("/collections");
+                            window.localStorage.setItem("token",token);
+                        }
+                    } catch (e) {
+                        console.error(e);
                     }
-                } catch (e) {
-                    console.error(e);
+                } else {
+                    history.push('/collections');
                 }
             }
+
             })();
     },[user, getAccessTokenSilently]);
     return (

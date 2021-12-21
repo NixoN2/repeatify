@@ -4,7 +4,7 @@ import {useProfile} from "./hooks/useProfile";
 const ProfileContent = () => {
     const {animal, color, picture,first_name, last_name, email, collections,isLoading} = useProfile(window.location.href.split('/profile/')[1]);
     return (
-        <div className="w-3/6 mt-32 mb-20 h-screen rounded-xl py-8 px-12 bg-white">
+        <div className="w-3/5 mt-32 min-h-screen mb-20 rounded-xl py-8 px-12 bg-white">
             <p className="text-4xl text-carolina-blue text-center mb-10">Profile</p>
             {
                 !isLoading ?
