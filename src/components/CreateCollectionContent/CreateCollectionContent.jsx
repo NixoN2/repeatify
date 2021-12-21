@@ -20,23 +20,27 @@ const CreateCollectionContent = () => {
     return (
         <div className="w-3/6 mt-32 mb-20 h-screen rounded-xl py-8 px-12 bg-white">
             <p className="text-4xl text-carolina-blue text-center mb-16">Create your collection</p>
-            <p className="text-2xl text-carolina-blue mb-6">Give your collection a name:</p>
-            <div className="mb-2 flex items-center">
-                <input className={classnames({"text-gray-500": !change},"w-2/5 h-10 pl-4 border-2 rounded-md border-carolina-blue")}
-                    value={name} onChange={onNameChange} type="text"
-                    placeholder="Enter collection's name:"
-                    disabled={!change}
-                />
-                {
-                    name ? change ?
-                        <Icon className="text-2xl ml-3 text-carolina-blue cursor-pointer" onClick={toggle} icon={checkLine} /> :
-                        <Icon className="text-2xl ml-3 text-carolina-blue cursor-pointer" onClick={toggle} icon={pencilLine}/> : null
-                }
+
+            {!created && <div>
+                <p className="text-2xl text-carolina-blue mb-6">Give your collection a name:</p>
+                <div className="mb-2 flex items-center">
+                    <input className={classnames({"text-gray-500": !change},"w-2/5 h-10 pl-4 border-2 rounded-md border-carolina-blue")}
+                        value={name} onChange={onNameChange} type="text"
+                        placeholder="Enter collection's name:"
+                        disabled={!change}
+                    />
+                    {
+                            name ? change ?
+                            <Icon className="text-2xl ml-3 text-carolina-blue cursor-pointer" onClick={toggle} icon={checkLine} /> :
+                            <Icon className="text-2xl ml-3 text-carolina-blue cursor-pointer" onClick={toggle} icon={pencilLine}/> : null
+                    }
+                </div>
+                <div className="mb-4 flex items-center">
+                    <input onChange={togglePrivate} className="mr-2 w-4 h-4 cursor-pointer" type="checkbox" />
+                    <p className="text-carolina-blue">Private Collection</p>
+                </div>
             </div>
-            <div className="mb-4 flex items-center">
-                <input onChange={togglePrivate} className="mr-2 w-4 h-4 cursor-pointer" type="checkbox" />
-                <p className="text-carolina-blue">Private Collection</p>
-            </div>
+            }
             { !created && <button onClick={saveCollection} className="p-3 w-40 bg-carolina-blue hover:bg-prussian-blue text-gray-100 rounded-xl mb-4">Save</button>}
             {
                 created && <CreateCardForm />

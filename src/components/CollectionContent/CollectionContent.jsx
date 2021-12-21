@@ -3,12 +3,13 @@ import {useHistory} from "react-router-dom";
 import { Icon } from '@iconify/react';
 import  pencilLine from '@iconify-icons/ri/pencil-line';
 import checkLine from '@iconify-icons/ri/check-line';
+import closeLine from "@iconify-icons/ri/close-line";
 import {useEditor} from "./hooks/useEditor";
 import CreateCardForm from "../CreateCardForm";
 import Card from "./Card";
 const CollectionContent = () => {
-    const {editors,search,onSearch, addEditor} = useEditor();
-    const {collection,add,edit,toggleEdit,toggle,id, isLoading} = useCollection(window.location.href.split('/collection/')[1]);
+    const {editors,search,onSearch,deleteEditor, addEditor} = useEditor();
+    const {collection,canDelete,deleteCollection,add,edit,toggleEdit,toggle,id, isLoading} = useCollection(window.location.href.split('/collection/')[1]);
     const history = useHistory();
     return (
         <div className="w-4/5 mt-32 mb-20 rounded-xl min-h-screen bg-white flex justify-between">
@@ -62,16 +63,24 @@ const CollectionContent = () => {
                             <p className="text-white text-3xl text-center">
                                 Editors
                             </p>
-                            {editors?.map(editor => {return <p
-                                key={editor?.editor?.auth0Id}
-                                onClick={()=>{history.push(`/profile/${editor?.editor?.auth0Id}`)}}
-                                className="text-2xl text-white hover:text-prussian-blue
-                                transition duration-300 ease-in-out
-                                cursor-pointer text-center">
-                                {editor?.editor?.first_name} {editor?.editor?.last_name}
-                            </p>})}
+                            {editors?.map(editor => {
+                            return <div className="flex justify-center items-center">
+                                <p
+                                    key={editor?.editor?.auth0Id}
+                                    onClick={()=>{history.push(`/profile/${editor?.editor?.auth0Id}`)}}
+                                    className="text-2xl text-white hover:text-prussian-blue
+                                    transition duration-300 ease-in-out
+                                    cursor-pointer text-center">
+                                    {editor?.editor?.first_name} {editor?.editor?.last_name}
+                                </p>
+                                {canDelete && <Icon key={editor?.editor?.first_name+editor?.editor?.auth0Id} className="text-white hover:text-prussian-blue transition duration-300 ease-in-out cursor-pointer ml-2 text-2xl font-black"
+                                onClick={()=>deleteEditor(editor?.editor?.auth0Id)} icon={closeLine} /> }
+                            </div>})}
                         </div> : null
                 }
+                {canDelete && <div className="flex justify-center items-center mt-16">
+                    <button onClick={deleteCollection} className="p-3 w-40 bg-red-500 hover:bg-red-900 transition duration-300 ease-in-out cursor-pointer text-white rounded-xl mb-4">Delete</button>
+                </div> }
             </div>
         </div>
     )

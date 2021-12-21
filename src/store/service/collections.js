@@ -28,6 +28,12 @@ export const collectionsApi = createApi({
                 body: body
             }),
         }),
+        deleteCollection: builder.mutation({
+            query: (id) => ({
+                url: `collections/${id}`,
+                method: 'DELETE'
+            })
+        }),
         CreateCard: builder.mutation({
             query: (body) => ({
                 url: 'card',
@@ -39,6 +45,13 @@ export const collectionsApi = createApi({
             query: (body) => ({
                 url: `/editors/${body.collectionId}`,
                 method: 'POST',
+                body: body
+            })
+        }),
+        DeleteEditor: builder.mutation({
+            query: (body) => ({
+                url: `/editors/${body.collectionId}`,
+                method: 'DELETE',
                 body: body
             })
         })
@@ -63,7 +76,9 @@ export const collectionsApi = createApi({
 export const {
     useGetCollectionQuery,
     useGetCollectionsQuery,
+    useDeleteCollectionMutation,
     useCreateCollectionMutation,
+    useDeleteEditorMutation,
     useCreateCardMutation,
     useAddEditorMutation,
 } = collectionsApi;
