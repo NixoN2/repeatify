@@ -11,13 +11,12 @@ export const useCollections = () => {
     // const { user: auth0User } = useAuth0();
     // const { data: dbUser } = useGetUserQuery(auth0User?.sub);
     const dispatch = useDispatch();
-    const {data, isLoading} = useGetCollectionsQuery();
+    const {data, isLoading} = useGetCollectionsQuery(null,{pollingInterval: 10000});
     const checkEditors = (editors,id) => {
         return editors.filter(({editor}) => editor.id === id).length > 0;
     }
     useEffect(()=> {
         dispatch(actions.setCollections(data));
-
     },[data]);
     // useEffect(()=> {
     //     dispatch(actions.setUser(dbUser));

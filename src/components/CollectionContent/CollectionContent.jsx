@@ -63,7 +63,7 @@ const CollectionContent = () => {
                                 Editors
                             </p>
                             {editors?.map(editor => {return <p
-                                key={editor.editor.id}
+                                key={editor?.editor?.auth0Id}
                                 onClick={()=>{history.push(`/profile/${editor?.editor?.auth0Id}`)}}
                                 className="text-2xl text-white hover:text-prussian-blue
                                 transition duration-300 ease-in-out

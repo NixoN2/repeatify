@@ -10,7 +10,10 @@ export const useEditor = () => {
     const addEditor = async () => {
         return AddEditor({collectionId: currentCollection.id,email: search})
         .unwrap()
-        .then(fulfilled => setEditors([...editors, fulfilled]))
+        .then(fulfilled => {
+            console.log(fulfilled);
+            setEditors([...editors, {editor:fulfilled}])
+        })
         .catch(error => console.log(error));
     }
     return {

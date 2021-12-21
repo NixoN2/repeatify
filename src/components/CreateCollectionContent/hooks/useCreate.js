@@ -11,12 +11,13 @@ export const useCreate = () => {
     const [privateCollection,setPrivate] = useState(false);
     const [change, setChange] = useState(true);
     const [created, setCreated] = useState(false);
-    const {currentCollection} = useSelector(state=>state.collections);
+    const {currentCollection,collections} = useSelector(state=>state.collections);
     const togglePrivate = () => setPrivate(!privateCollection);
     const saveCollection = () => {
         return CreateCollection({userId: user.id, private: privateCollection, name: name})
         .unwrap()
         .then(fulfilled=>{
+            dispatch(actions.setCollections([...collections, {...fulfilled, author: {...user}, cards: [], editors: []}]));
             dispatch(actions.setCollection({...fulfilled, cards: []}));
             setCreated(true);
         })
