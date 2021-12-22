@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import {useSelector,useDispatch} from "react-redux";
 import {actions} from "../../../store";
 import {useCreateCollectionMutation} from "../../../store/service/collections";
-
+import {notify} from "../../Notification/Notification";
 export const useCreate = () => {
     const {user} = useSelector(state=>state.user);
     const dispatch = useDispatch();
@@ -17,11 +17,12 @@ export const useCreate = () => {
         return CreateCollection({userId: user.id, private: privateCollection, name: name})
         .unwrap()
         .then(fulfilled=>{
+            notify({title: "Completed", message: "Collection was created"});
             dispatch(actions.setCollections([...collections, {...fulfilled, author: {...user}, cards: [], editors: []}]));
             dispatch(actions.setCollection({...fulfilled, cards: []}));
             setCreated(true);
         })
-        .catch(error=>console.log(error));
+        .catch(error=>notify({title: "Error", message: error.message}));
     }
     const toggle = () => setChange(!change);
     const onNameChange = (e) => change && setName(e.target.value);

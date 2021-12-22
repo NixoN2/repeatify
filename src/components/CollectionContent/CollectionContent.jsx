@@ -64,16 +64,15 @@ const CollectionContent = () => {
                                 Editors
                             </p>
                             {editors?.map(editor => {
-                            return <div className="flex justify-center items-center">
+                            return <div key={editor?.editor?.auth0Id} className="flex justify-center items-center">
                                 <p
-                                    key={editor?.editor?.auth0Id}
                                     onClick={()=>{history.push(`/profile/${editor?.editor?.auth0Id}`)}}
                                     className="text-2xl text-white hover:text-prussian-blue
                                     transition duration-300 ease-in-out
                                     cursor-pointer text-center">
                                     {editor?.editor?.first_name} {editor?.editor?.last_name}
                                 </p>
-                                {canDelete && <Icon key={editor?.editor?.first_name+editor?.editor?.auth0Id} className="text-white hover:text-prussian-blue transition duration-300 ease-in-out cursor-pointer ml-2 text-2xl font-black"
+                                {canDelete && <Icon className="text-white hover:text-prussian-blue transition duration-300 ease-in-out cursor-pointer ml-2 text-2xl font-black"
                                 onClick={()=>deleteEditor(editor?.editor?.auth0Id)} icon={closeLine} /> }
                             </div>})}
                         </div> : null

@@ -5,6 +5,7 @@ import classnames from "classnames";
 import { useMenu } from "./hooks/useMenu";
 import MenuLink from "./MenuLink";
 import {useAuth0} from "@auth0/auth0-react";
+import {notify} from "../Notification/Notification";
 const Header = () => {
     const {toggle, open,registered, routesSetter, clickLink,fullName,id} = useMenu();
     const {logout} = useAuth0();
@@ -42,6 +43,7 @@ const Header = () => {
                                 window.localStorage.removeItem("auth0Id");
                                 window.localStorage.removeItem("token");
                                 window.localStorage.removeItem("redirected");
+                                notify({title: "Completed", message: "You are logged out"});
                                 routesSetter(false);
                                 logout();
                                 clickLink(e)}}

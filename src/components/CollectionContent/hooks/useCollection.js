@@ -4,6 +4,7 @@ import {useState} from "react";
 import {useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {useGetCollectionQuery, useDeleteCollectionMutation} from "../../../store/service/collections";
+import {notify} from "../../Notification/Notification";
 export const useCollection = (id) => {
     const [add, setAdd] = useState(false);
     const history = useHistory();
@@ -18,6 +19,7 @@ export const useCollection = (id) => {
         return DeleteCollection(id)
         .unwrap()
         .then(fulfilled=>{
+            notify({title: "Completed", message: "Collection was deleted"});
             history.push('/collections');
         })
         .catch(error=>console.log(error));

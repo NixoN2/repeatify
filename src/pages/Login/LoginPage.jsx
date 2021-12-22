@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {actions} from "../../store";
+import {notify} from "../../components/Notification/Notification";
 import {useHistory} from "react-router-dom";
 const LoginPage = () => {
     const history = useHistory();
@@ -17,8 +18,10 @@ const LoginPage = () => {
                         const token = await getAccessTokenSilently({audience: "https://repeatify.herokuapp.com"});
                         dispatch(actions.setToken(token))
                         if (token?.length > 0){
-                            history.push("/collections");
+                            notify({title: "Completed",message:"You are logged in"});
                             window.localStorage.setItem("token",token);
+                            history.push("/collections");
+
                         }
                     } catch (e) {
                         console.error(e);

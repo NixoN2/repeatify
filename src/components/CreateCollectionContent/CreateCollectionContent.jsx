@@ -29,11 +29,6 @@ const CreateCollectionContent = () => {
                         placeholder="Enter collection's name:"
                         disabled={!change}
                     />
-                    {
-                            name ? change ?
-                            <Icon className="text-2xl ml-3 text-carolina-blue cursor-pointer" onClick={toggle} icon={checkLine} /> :
-                            <Icon className="text-2xl ml-3 text-carolina-blue cursor-pointer" onClick={toggle} icon={pencilLine}/> : null
-                    }
                 </div>
                 <div className="mb-4 flex items-center">
                     <input onChange={togglePrivate} className="mr-2 w-4 h-4 cursor-pointer" type="checkbox" />
